@@ -1,0 +1,965 @@
+System.out.println("O que voce deseja fazer?: " + "\n1) Alterar primeiro nome \n2) Alterar nome do meio\n3) Alterar ultimo nome \n4) Alterar número de celular\n5) Alterar data de nascimento\n6) Alterar data de aniversario\n7) Alterar email\n8) Alterar endereco\n 9) Alterar cidade\n10)");
+
+
+
+switch(opcaoUsuario) {
+		case 1:
+				System.out.println("Insira o novo primeiro nome: ");
+				novoDado = entrada.next();
+				contato.setPrimeiroNome(novoDado);
+				break;
+		
+		case 2:
+				System.out.println("Insira o novo nome do meio: ");
+				novoDado = entrada.next();
+				contato.setNomeMeio(novoDado);
+				break;
+
+		case 3:
+				System.out.println("Insira o novo ultimo nome: ");
+				novoDado = entrada.next();
+				contato.setUltimoNome(novoDado);
+				break;
+
+		case 4:
+				System.out.println("Insira o novo número de celular: ");
+				novoNumero = entrada.nextInt();
+				contato.setNumeroCelular(novoNumero);
+				break;
+
+		case 5:
+				System.out.println("Insira o novo dia: ");
+				dia = entrada.nextInt();
+				System.out.println("Insira o novo mês: ");
+				mes = entrada.nextInt();
+				System.out.println("Insira o novo ano: ");
+				ano = entrada.nextInt();
+				c.set(dia, mes, ano);
+				contato.setDataNascimento(c);
+				break;
+
+		case 6:
+				System.out.println("Insira o novo dia: ");
+				dia = entrada.nextInt();
+				System.out.println("Insira o novo mês: ");
+				mes = entrada.nextInt();
+				System.out.println("Insira o novo ano: ");
+				ano = entrada.nextInt();
+				c.set(dia, mes, ano);
+				contato.setDataAniversario(c);
+				break;
+
+		case 7:
+				System.out.println("Insira o novo email: ");
+				novoDado = entrada.next();
+				contato.setEmail(novoDado);
+				break;
+
+		case 8:
+				System.out.println("Insira o novo endereço: ");
+				novoDado = entrada.next();
+				contato.setEndereco(novoDado);
+				break;
+
+		case 9:
+				System.out.println("Insira a nova cidade: ");
+				novoDado = entrada.next();
+				contato.setCidade(novoDado);
+				break;
+
+		case 10:
+				System.out.println("Insira o novo estado: ");
+				novoDado = entrada.next();
+				contato.setEstado(novoDado);
+				break;
+		
+		case 11:
+				System.out.println("Insira o novo país: ");
+				novoDado = entrada.next();
+				contato.setPais(novoDado);
+				break;
+
+		case 12:
+				System.out.println("Insira o novo CEP: ");
+				novoNumero = entrada.nextInt();
+				contato.setCep(novoNumero);
+				break;
+
+		default:
+				cadastrarUsuarioContador = false;
+}
+
+public String getNomeMeio() {
+        return this.nomeMeio;
+    }
+
+    public String getUltimoNome() {
+        return this.ultimoNome;
+    }
+
+    public int getNumeroCelular(){
+        return this.numeroCelular;
+    }
+
+    public String getNascimento(){
+        return formataData.format(this.dataNascimento);
+    }
+
+
+
+
+
+    public static void cadastrarUsuarioMenu(Boolean cadastrarUsuarioContador, int opcaoUsuario, Scanner entrada, Contato contato){
+        String [] campos = {"primeiro nome", "nome do meio", "ultimo nome", "numero de celular", "data de nascimento", "data de aniversario", "email", "endereco", "cidade", "estado", "pais", "cep"};
+
+        while(cadastrarUsuarioContador){
+            String novoDado;
+            int dia, mes, ano, novoNumero;
+            Calendar c = Calendar.getInstance();
+            System.out.println("\nDeseja adicionar ou atualizar algum dado?");
+            
+            for(int i = 0; i<campos.length; i++){
+                System.out.println("\n" + (i + 1) + ") Alterar " + campos[i]);
+            }
+            
+            System.out.println("\n13) Voltar ao menu");
+            System.out.print("\n-> ");
+            opcaoUsuario = entrada.nextInt();
+
+            
+            switch(opcaoUsuario) {
+                case 1:
+                    System.out.println("Insira o novo primeiro nome: ");
+                    novoDado = entrada.next();
+                    contato.setPrimeiroNome(novoDado);
+                    break;
+                case 2:
+                    System.out.println("Insira o novo nome do meio: ");
+                    novoDado = entrada.next();
+                    contato.setNomeMeio(novoDado);
+                    break;
+
+                case 3:
+                    System.out.println("Insira o novo ultimo nome: ");
+                    novoDado = entrada.next();
+                    contato.setUltimoNome(novoDado);
+                    break;
+
+                case 4:
+                    System.out.println("Insira o novo número de celular pessoal: ");
+                    novoNumero = entrada.nextInt();
+                    contato.setNumeroCelularPessoal(novoNumero);
+                    break;
+            
+                case 5:
+                    System.out.println("Insira o novo número de celular fixo: ");
+                    novoNumero = entrada.nextInt();
+                    contato.setNumeroCelularFixo(novoNumero);
+                    break;
+            
+                case 6:
+                    System.out.println("Insira o novo dia: ");
+                    dia = entrada.nextInt();
+                    System.out.println("Insira o novo mês: ");
+                    mes = entrada.nextInt();
+                    System.out.println("Insira o novo ano: ");
+                    ano = entrada.nextInt();
+                    c.set(dia, mes, ano);
+                    contato.setDataNascimento(c);
+                    break;
+
+                case 7:
+                    System.out.println("Insira o novo email: ");
+                    novoDado = entrada.next();
+                    contato.setEmail(novoDado);
+                    break;
+
+                case 8:
+                    System.out.println("Insira o novo endereço: ");
+                    novoDado = entrada.next();
+                    contato.setEndereco(novoDado);
+                    break;
+
+                case 9:
+                    System.out.println("Insira a nova cidade: ");
+                    novoDado = entrada.next();
+                    contato.setCidade(novoDado);
+                    break;
+
+                case 10:
+                    System.out.println("Insira o novo estado: ");
+                    novoDado = entrada.next();
+                    contato.setEstado(novoDado);
+                    break;
+                
+                case 11:
+                    System.out.println("Insira o novo país: ");
+                    novoDado = entrada.next();
+                    contato.setPais(novoDado);
+                    break;
+
+                case 12:
+                    System.out.println("Insira o novo CEP: ");
+                    novoNumero = entrada.nextInt();
+                    contato.setCep(novoNumero);
+                    break;
+
+                default:
+                    cadastrarUsuarioContador = false;
+            }
+        }
+    }
+
+
+    String primeiroNome, String ultimoNome, String numeroCelularPessoal, String email, String numeroCelularFixo, String genero, String nomeMeio, 
+    String diaNascimento, String mesNascimento, String anoNascimento, String tipoResidencia, String endereco, String cidade, String estado, String pais, String cep, 
+    String emprego, String siteEmpresarial, String twitter, String linkedin, String instagram, String youtube, String sitePessoal
+
+    public void setGeral(String[] valores){
+        this.primeiroNome = valores[0].toString();
+        this.ultimoNome = valores[1];
+        this.numeroCelularPessoal = Long.parseLong(valores[2]);
+        this.email = valores[3];
+        this.numeroCelularFixo = Long.parseLong(numeroCelularFixo);
+        this.genero = genero.charAt(0);
+        this.nomeMeio = nomeMeio;
+        int dia = Integer.parseInt(diaNascimento);
+        int mes = Integer.parseInt(mesNascimento);
+        int ano = Integer.parseInt(anoNascimento);
+        Calendar c = Calendar.getInstance();
+        c.set(dia, mes, ano);
+        this.dataNascimento = c;
+        this.tipoResidencia = tipoResidencia;
+        this.endereco = endereco;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.pais = pais;
+        this.cep = Long.parseLong(cep);
+        this.emprego = emprego;
+        this.siteEmpresarial = siteEmpresarial;
+        this.twitter = twitter;
+        this.linkedin = linkedin;
+        this.instagram = instagram;
+        this.youtube = youtube;
+        this.sitePessoal = sitePessoal;
+
+    }
+
+    public void setGeral(String[] valores){
+        this.primeiroNome = valores[0].toString();
+        this.ultimoNome = valores[1];
+        this.numeroCelularPessoal = Long.parseLong(valores[2]);
+        this.email = valores[3];
+        this.numeroCelularFixo = Long.parseLong(valores[4]);
+        int dia = Integer.parseInt(valores[5]);
+        int mes = Integer.parseInt(valores[6]);
+        int ano = Integer.parseInt(valores[7]);
+        Calendar c = Calendar.getInstance();
+        c.set(dia, mes, ano);
+        this.genero = valores[8].charAt(0);
+        this.nomeMeio = valores[9];
+        this.tipoResidencia = valores[10];
+        this.endereco = valores[11];
+        this.cidade = valores[12];
+        this.estado = valores[13];
+        this.pais = valores[14];
+        this.cep = Long.parseLong(valores[15]);
+        this.emprego = valores[16];
+        this.siteEmpresarial = valores[17];
+        this.twitter = valores[18];
+        this.linkedin = valores[19];
+        this.instagram = valores[20];
+        this.youtube = valores[21];
+        this.sitePessoal = valores[22];
+    }
+
+
+
+
+public void setGeral(String[] valores){
+	this.primeiroNome = valores[0].toString();
+	this.ultimoNome = valores[1];
+	if(valores[2].equals("")){
+			this.numeroCelularPessoal = 0;
+	}else{
+			this.numeroCelularPessoal = Long.parseLong(valores[2]);
+	}
+	this.email = valores[3];
+	this.numeroCelularFixo = Long.parseLong(valores[4]);
+	int dia, mes, ano;
+	
+	if(valores[5].equals("")){
+			dia = 0;
+	}else{
+			dia = Integer.parseInt(valores[5]);
+	}if(valores[6].equals("")){
+			mes = 0;
+	}else{
+			mes = Integer.parseInt(valores[6]);
+	}if(valores[7].equals("")){
+			ano = 0;
+	}else{
+			ano = Integer.parseInt(valores[7]);
+	}
+	Calendar c = Calendar.getInstance();
+	c.set(dia, mes, ano);
+	this.dataNascimento = c;
+	this.genero = valores[8].charAt(0);
+	this.nomeMeio = valores[9];
+	this.tipoResidencia = valores[10];
+	this.endereco = valores[11];
+	this.cidade = valores[12];
+	this.estado = valores[13];
+	this.pais = valores[14];
+	if(valores[15].equals("")){
+			this.cep = 0;
+	}else{
+			this.cep = Long.parseLong(valores[15]);
+	}
+	this.emprego = valores[16];
+	this.siteEmpresarial = valores[17];
+	this.twitter = valores[18];
+	this.linkedin = valores[19];
+	this.instagram = valores[20];
+	this.youtube = valores[21];
+	this.sitePessoal = valores[22];
+}
+
+
+import java.util.*;
+import java.text.DateFormat;
+
+public class Contato {
+
+	DateFormat formataData = DateFormat.getDateInstance();
+
+	private String primeiroNome;
+	private String nomeMeio;
+	private String ultimoNome;
+	
+	private String numeroCelularPessoal;
+	private String numeroCelularFixo;
+	private Calendar dataNascimento;
+	private char genero;
+	private String email;
+	private String tipoResidencia;
+	private String endereco;
+	private String cidade;
+	private String estado;
+	private String pais;
+	private String cep;
+	private String emprego;
+	private String siteEmpresarial;
+	private String twitter;
+	private String linkedin;
+	private String instagram;
+	private String youtube;
+	private String sitePessoal;
+
+	Contato() {
+	}
+
+	Contato(String primeiroNome, String ultimoNome, String numeroCelular, String email) {
+		this.primeiroNome = primeiroNome;
+		this.ultimoNome = ultimoNome;
+		this.numeroCelularPessoal = numeroCelular;
+		this.email = email;
+	}
+
+	public String getNome() {
+		return this.primeiroNome + " " + this.nomeMeio + " " + this.ultimoNome;
+	}
+
+	public String getPrimeiroNome() {
+		return this.primeiroNome;
+	}
+
+	public String getNomeMeio() {
+		return this.nomeMeio;
+	}
+
+	public String getUltimoNome() {
+		return this.ultimoNome;
+	}
+
+	public String getNumeroCelularPessoal() {
+		return this.numeroCelularPessoal;
+	}
+
+	public String getNumeroCelularFixo() {
+		return this.numeroCelularFixo;
+	}
+
+	public String getNascimento() {
+		return formataData.format(this.dataNascimento);
+	}
+
+	public char getGenero() {
+		return this.genero;
+	}
+
+	public String getEmail() {
+		return this.email;
+	}
+
+	public String getTipoResidencia() {
+		return this.tipoResidencia;
+	}
+
+	public String getEndereco() {
+		return this.endereco;
+	}
+
+	public String getCidade() {
+		return this.cidade;
+	}
+
+	public String getEstado() {
+		return this.estado;
+	}
+
+	public String getPais() {
+		return this.pais;
+	}
+
+	public String getCep() {
+		return this.cep;
+	}
+
+	public String getEmprego() {
+		return this.emprego;
+	}
+
+	public String getSiteEmpresarial() {
+		return this.siteEmpresarial;
+	}
+
+	public String getTwitter() {
+		return this.twitter;
+	}
+
+	public String getLinkedin() {
+		return this.linkedin;
+	}
+
+	public String getInstagram() {
+		return this.instagram;
+	}
+
+	public String getYoutube() {
+		return this.youtube;
+	}
+
+	public String getSitePessoal() {
+		return this.sitePessoal;
+	}
+
+	public void setPrimeiroNome(String primeiroNome) {
+		this.primeiroNome = primeiroNome;
+	}
+
+	public void setNomeMeio(String nomeMeio) {
+		this.nomeMeio = nomeMeio;
+	}
+
+	public void setUltimoNome(String ultimoNome) {
+		this.ultimoNome = ultimoNome;
+	}
+
+	public void setNumeroCelularPessoal(String numeroCelularPessoal) {
+		this.numeroCelularPessoal = numeroCelularPessoal;
+	}
+
+	public void setNumeroCelularFixo(String numeroCelularFixo) {
+		this.numeroCelularFixo = numeroCelularFixo;
+	}
+
+	public void setDataNascimento(Calendar dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
+	public void setGenero(char genero) {
+		this.genero = genero;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setTipoResidencia(String tipoResidencia) {
+		if (tipoResidencia.equals("iglu")) {
+			System.out.println("Pqp kkkkkkkkkkk");
+		}
+		this.tipoResidencia = tipoResidencia;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public void setEstado(String estado) {
+		if (estado.equals("casado") || estado.equals("solteiro")) {
+			System.out.println("Tu é burro cara? kkkkkkkkk");
+		} else {
+			this.estado = estado;
+		}
+	}
+
+	public void setPais(String pais) {
+		this.pais = pais;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public void setEmprego(String emprego) {
+		this.emprego = emprego;
+	}
+
+	public void setSiteEmpresarial(String siteEmpresarial) {
+		this.siteEmpresarial = siteEmpresarial;
+	}
+
+	public void setTwitter(String twitter) {
+		this.twitter = twitter;
+	}
+
+	public void setLinkedin(String linkedin) {
+		this.linkedin = linkedin;
+	}
+
+	public void setInstagram(String instagram) {
+		this.instagram = instagram;
+	}
+
+	public void setYoutube(String youtube) {
+		this.youtube = youtube;
+	}
+
+	public void setSitePessoal(String sitePessoal) {
+		this.sitePessoal = sitePessoal;
+	}
+
+	public void setGeral(String[] valores) {
+    int dia, mes, ano;
+		System.out.println(valores[0].toString());
+		this.primeiroNome = valores[0].toString();
+		this.ultimoNome = valores[1].toString();
+		this.numeroCelularPessoal = valores[2].toString();
+		this.email = valores[3].toString();
+		this.numeroCelularFixo = valores[4].toString();
+		System.out.println("Passou do numeroCelular");
+    if(valores[5].equals("")){
+      dia = 1;
+    }else{
+      dia = Integer.parseInt(valores[5]);
+    }
+    if(valores[6].equals("")){
+      mes = 1;
+    }else{
+		  mes = Integer.parseInt(valores[6]);
+    }
+    if(valores[7].equals("")){
+      ano = 1;
+    }else{
+		  ano = Integer.parseInt(valores[7]);
+    }
+		Calendar c = Calendar.getInstance();
+		c.set(dia, mes, ano);
+		System.out.println("Passou do calendario");
+		this.dataNascimento = c;
+		if(valores[8] != ""){
+			this.genero = valores[8].charAt(0);	
+		}
+		System.out.println("Passou do genero");
+		this.nomeMeio = valores[9].toString();
+		this.tipoResidencia = valores[10].toString();
+		this.endereco = valores[11].toString();
+		this.cidade = valores[12].toString();
+		this.estado = valores[13].toString();
+		this.pais = valores[14].toString();
+		this.cep = valores[15].toString();
+		System.out.println("Passou do CEP");
+		this.emprego = valores[16].toString();
+		this.siteEmpresarial = valores[17].toString();
+		this.twitter = valores[18].toString();
+		this.linkedin = valores[19].toString();
+		this.instagram = valores[20].toString();
+		this.youtube = valores[21].toString();
+		this.sitePessoal = valores[22].toString();
+	}
+}
+
+
+ = { "primeiro nome", "ultimo nome", "numero de celular pessoal", "email", "numero de celular fixo",
+				"dia de nascimento", "mes de nascimento", "ano de nascimento", "genero (m/f/o)", "nome do meio",
+				"tipo de residencia", "endereco", "cidade", "estado", "pais", "cep", "emprego", "site empresarial", "twitter",
+				"linkedin", "instagram", "youtube", "site pessoal" };
+
+
+String[] valoresVcf = {prefixarInicioArquivo(), prefixarVersaoArquivo(), prefixarNomeCompleto(), prefixarNome(), prefixarGenero(), prefixarDataNascimento(), prefixarEmail(), prefixarCelularPessoal(), prefixarTelefoneFixo(), prefixarTipoResidencial(), prefixarTipoEndereco(), prefixarEmprego(), prefixarSiteEmpresarial(), prefixarTwitter(), prefixarLinkedin(), prefixarInstagram(), prefixarYoutube(), prefixarSitePessoal(), prefixarFinalArquivo()};
+
+for(int i=0; i<valores.length; i++) {
+			if(!camposContato[i].equals("")){
+				System.out.println(i + ": " + valores[i]);
+				System.out.println(i + " campos Contato: " + camposContato[i]);
+				try{
+					fileWriter.write(System.lineSeparator());
+					fileWriter.write(valores[i]);		
+				} catch(IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+public String[] getAll() {
+		String[] info = {this.primeiroNome, this.nomeMeio, this.ultimoNome, this.numeroCelularPessoal, this.numeroCelularFixo, formataData.format(this.dataNascimento.getTime()), String.valueOf(this.genero), this.email, this.tipoResidencia, this.etiquetaComercial, this.enderecoComercial, this.endereco, this.cidade, this.estado, this.pais, this.cep, this.emprego, this.siteEmpresarial, this.twitter, this.linkedin, this.instagram, this.youtube, this.nomeSitePessoal, this.sitePessoal};
+		return info;
+	}
+
+for(int i = 0; i < arrayContatos.size(); i++) {
+			if(arrayContatos.get(i).getPrimeiroNome().toUpperCase()
+		 	.equals(nomeDesejado.toUpperCase()) || 
+			arrayContatos.get(i)
+			.getNomeMeio().toUpperCase().equals(nomeDesejado.toUpperCase()) ||
+			arrayContatos.get(i).getUltimoNome().toUpperCase()
+			.equals(nomeDesejado.toUpperCase())) {
+				System.out.println();
+				colorir.imprimirVerde("- " + arrayContatos.get(i).getNome());
+				contador ++;
+			}
+		}
+
+Inicio
+Gabirel
+Gamer
+51980517686
+cachorrinho64@gmail.com
+532532555
+10
+08
+2005
+m
+Lwaahuisyc
+casa
+nao tenho
+desempregado
+rua pastor padre
+scs
+rs
+br
+749326483
+candidato padre
+bolsonaro.com
+jair
+messias
+lula
+luladopubg
+desafiodev
+desafio
+Inicio
+Thomas
+Schmitz
+996969102
+thomas.henrique
+-
+19
+09
+2005
+m
+Henrique
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+Inicio
+Arthur
+Lwaahuisyc
+9696969
+arthurBlaze@yahoo.com.br
+-
+19
+05
+2009
+f
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+Inicio
+Felipe
+Jackuhwqau
+36416521512
+felipee@gmail.com
+87653226
+22
+06
+2005
+o
+loiruiewysur
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+comunismoParaTodes
+comonusmoparatodes.com.br.urss
+Inicio
+Enzo
+Perioeurjws
+578326
+enzociuno21462@gmail.com
+-
+02
+03
+2006
+o
+bernarasid
+casa
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+Inicio
+Thomas
+Pinto
+7345673285
+thsyuigcyhusag@yahoo.com.bing
+-
+19
+11
+1342
+o
+-
+apartamento
+-
+-
+-
+-
+-
+-
+-
+o mesmo do Samuel
+-
+-
+-
+-
+-
+-
+-
+Inicio
+
+
+try {
+			FileWriter fw = new FileWriter("Contatos.txt", true);
+			BufferedWriter bw = new BufferedWriter(fw);
+
+      bw.write("Inicio");
+			bw.newLine();
+      for (int i = 0; i < arrayContatos.size(); i++) {
+  			for (int j = 0; j < arrayContatos.get(0).getAll().length; j++) {
+  				if (arrayContatos.get(i).getAll()[j].equals("")) {
+  					bw.write("-");	
+  				} else {
+  					bw.write(arrayContatos.get(i).getAll()[j]);
+  				}
+  				bw.newLine();
+  			}
+  			bw.write("Inicio");
+  
+  			bw.close();
+  			fw.close();
+      }
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+import java.io.*;
+import java.util.*;
+
+public class BackupTXTs {
+	ArrayList<Contato> arrayContatos = new ArrayList<Contato>();
+	
+	public void ler() throws Exception {
+    int numeroContatos = this.arrayContatos.size();
+    for(int i = numeroContatos - 1; i >= 0 ; i--) {
+      System.out.println("O número de contatos é: " + this.arrayContatos.size());
+      System.out.println(i);
+			this.arrayContatos.remove(i);
+		}
+		
+		try {
+			int contador = 0;
+			InputStream arquivo = new FileInputStream("Contatos.txt");
+			Scanner entradaArquivo = new Scanner(arquivo);
+			String listaValores[];
+
+			listaValores = new String[26];
+			entradaArquivo.nextLine();
+			
+			while (entradaArquivo.hasNextLine()) {
+				String valorLido = entradaArquivo.next();
+				if (valorLido.equals("Inicio")) {
+					Contato contato = new Contato();
+					contato.setAll(listaValores);
+					this.arrayContatos.add(contato);
+					listaValores = new String[26];
+					contador = 0;
+					if (entradaArquivo.hasNextLine()) {
+						entradaArquivo.nextLine();
+						valorLido = entradaArquivo.next();
+					} else {
+						break;
+					}
+				}
+				listaValores[contador] = valorLido;
+				entradaArquivo.nextLine();
+				contador++;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public ArrayList<Contato> getArrayContatos() {
+		return this.arrayContatos;
+	}
+}
+
+titulo.tituloPrincipal("Edicao de Usuario");
+
+		System.out.println("Digite o usuario a ser editado: ");
+		nomeDesejado = entrada.nextLine();
+
+		Contato contato = menuBusca.buscaNomeCompleto(nomeDesejado, arrayContatos, colorir);
+
+		System.out.println();
+		colorir.imprimirAmarelo("Digite '-' caso queira eliminar o valor do campo");
+		colorir.imprimirAmarelo("Deixe em branco caso queira manter o valor do campo");
+		if(contato != null){
+			for (int i = 0; i < campos.length; i++) {
+				System.out.println("\n" + (i + 1) + ") Editar " + campos[i] + "(" + contato.getAll()[i] + ")" + ": ");
+				valorDigitado = entrada.nextLine();
+
+				if(valorDigitado == "") {
+					valores[i] = contato.getAll()[i];
+				} else if(valorDigitado == "-") {
+					valores[i] = "";
+				} else {
+					valores[i] = valorDigitado;
+				}
+			}
+
+      for(int i = 0; i < arrayContatos.size(); i++) {
+				if(arrayContatos.get(i).getNome().equals(nomeDesejado)){
+          arrayContatos.remove(i);
+				}
+			}
+			
+			contato.setAll(valores);
+			
+      ArquivoCriacao arquivoCriacao = new ArquivoCriacao(contato); 
+			
+      deletarArquivo.deletarArquivo(nomeDesejado+".vcf");
+      deletarArquivo.deletarArquivo("Contatos.txt");
+			
+      arrayContatos.add(contato);
+      
+			try {
+				FileWriter fw = new FileWriter("Contatos.txt", true);
+				BufferedWriter bw = new BufferedWriter(fw);
+	
+	      bw.write("Inicio");
+				bw.newLine();
+	      for (int i = 0; i < arrayContatos.size(); i++) {
+	  			for (int j = 0; j < arrayContatos.get(0).getAll().length; j++) {
+	  				if (arrayContatos.get(i).getAll()[j].equals("")) {
+	  					bw.write("-");	
+	  				} else {
+	  					bw.write(arrayContatos.get(i).getAll()[j]);
+	  				}
+	  				bw.newLine();
+	  			}
+	  			bw.write("Inicio");
+          if(i != arrayContatos.size() - 1){
+            bw.newLine();
+          }
+	      }
+				bw.close();
+				fw.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+    String nomeCliente = contato.getNome();
+		Prefixos prefixos = new Prefixos(contato);
+
+		try {
+			File file = new File(nomeCliente + ".vcf");
+			file.createNewFile();
+			FileWriter fileWriter = new FileWriter(nomeCliente + ".vcf");
+			prefixos = new Prefixos(contato);
+
+			arquivoCriacao.valoresVcf(fileWriter, prefixos);
+
+			fileWriter.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+			
+		leituraTXTs.ler();
+			
+		} else {
+			colorir.imprimirVermelho("Nenhum usuario encontrado!");
+		}
