@@ -1,0 +1,21 @@
+BEGIN:VCARD
+VERSION:3.0
+FN;CHARSET=UTF-8:Joao Herzog Nunes
+N;CHARSET=UTF-8:Nunes;Joao;Herzog;;
+GENDER:o
+BDAY:20040924
+EMAIL;CHARSET=UTF-8;type=HOME,INTERNET:jvherzog@yahoo.com
+TEL;TYPE=CELL:5342634643
+TEL;TYPE=HOME,VOICE:64364364364
+LABEL;CHARSET=UTF-8;TYPE=HOME:apartamento
+ADR;CHARSET=UTF-8;TYPE=HOME:;;rua de santa cruz 285;scs;rs;8943576-432;br
+ORG;CHARSET=UTF-8:estiqueta
+ADR;CHARSET=UTF-8;TYPE=WORK:;;rua do console e jogos brasil
+ROLE;CHARSET=UTF-8:fisico
+URL;type=WORK;CHARSET=UTF-8:jv.pe�cas.com
+X-SOCIALPROFILE;TYPE=twitter:jvherzogames
+X-SOCIALPROFILE;TYPE=linkedin:john victor
+X-SOCIALPROFILE;TYPE=instagram:joao.pegatodas
+X-SOCIALPROFILE;TYPE=youtube:john/gta/red dead
+X-SOCIALPROFILE;TYPE=rockstar.com:nonstoppop.com.br
+END:VCARD

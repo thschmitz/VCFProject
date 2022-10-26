@@ -5,6 +5,7 @@ public class BackupTXTs {
 	ArrayList<Contato> arrayContatos = new ArrayList<Contato>();
 	
 	public void ler() throws Exception {
+		CamposMenu campos = new CamposMenu();
     int numeroContatos = this.arrayContatos.size();
     for(int i = numeroContatos - 1; i >= 0 ; i--) {
 			this.arrayContatos.remove(i);
@@ -15,8 +16,10 @@ public class BackupTXTs {
 			InputStream arquivo = new FileInputStream("Contatos.txt");
 			Scanner entradaArquivo = new Scanner(arquivo);
 			String listaValores[];
+			int qtdCampos = campos.getCampos().length;
 
-			listaValores = new String[26];
+			// DINAMIZAR ISSO AQUI
+			listaValores = new String[qtdCampos];
 			entradaArquivo.nextLine();
 			
 			while (entradaArquivo.hasNextLine()) {
@@ -25,7 +28,8 @@ public class BackupTXTs {
 					Contato contato = new Contato();
 					contato.setAll(listaValores);
 					this.arrayContatos.add(contato);
-					listaValores = new String[26];
+					// DINAMIZAR ISSO AQUI
+					listaValores = new String[qtdCampos];
 					contador = 0;
 					if (entradaArquivo.hasNextLine()) {
 						entradaArquivo.nextLine();

@@ -20,7 +20,6 @@ public class ArquivoCriacao {
 		}
 
 		for (int i = 0; i < valores.length; i++) {
-			System.out.println(valores[i]);
 			if (!testePrefixosVazios.contains(valores[i])) {
 				try {
           if(!valores[i].equals("-")){
@@ -35,23 +34,8 @@ public class ArquivoCriacao {
 	}
 
 	public void criar() {
-		String nomeCliente = contato.getNome();
 		criarArquivoTxt();
-		Prefixos prefixos = new Prefixos(contato);
-
-		try {
-			File file = new File(nomeCliente + ".vcf");
-			file.createNewFile();
-			FileWriter fileWriter = new FileWriter(nomeCliente + ".vcf");
-			prefixos = new Prefixos(contato);
-
-			valoresVcf(fileWriter, prefixos);
-
-			fileWriter.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+  }
 
 	public void criarArquivoTxt() {
 

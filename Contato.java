@@ -284,7 +284,7 @@ public class Contato {
 			mes = (Integer.parseInt(valores[6]) - 1);
 		}
 		if (valores[7].equals("")) {
-			ano = 1;
+			ano = 1000;
 		} else {
 			ano = Integer.parseInt(valores[7]);
 		}
@@ -298,7 +298,6 @@ public class Contato {
 		} else {
 			this.genero = 'o';
 		}
-
 		
 		this.nomeMeio = valores[9].toString();
 		this.tipoResidencia = valores[10].toString();

@@ -57,8 +57,6 @@ public class MenuEdita{
       			
       			contato.setAll(valores);
       			
-            ArquivoCriacao arquivoCriacao = new ArquivoCriacao(contato); 
-      			
             deletarArquivo.deletarArquivo(nomeDesejado+".vcf");
             deletarArquivo.deletarArquivo("Contatos.txt");
       			
@@ -90,21 +88,7 @@ public class MenuEdita{
       				e.printStackTrace();
       			}
       
-          String nomeCliente = contato.getNome();
-      		Prefixos prefixos = new Prefixos(contato);
       
-      		try {
-      			File file = new File(nomeCliente + ".vcf");
-      			file.createNewFile();
-      			FileWriter fileWriter = new FileWriter(nomeCliente + ".vcf");
-      			prefixos = new Prefixos(contato);
-      
-      			arquivoCriacao.valoresVcf(fileWriter, prefixos);
-      
-      			fileWriter.close();
-      		} catch (IOException e) {
-      			e.printStackTrace();
-      		}
       			
       		leituraTXTs.ler();
       			

@@ -6,6 +6,10 @@ public class Prefixos{
     this.contato = contato;
   }
 
+	Prefixos() {
+		
+	}
+
 	public String[] getListaVazios() {
 		return this.listaVazios;
 	}
