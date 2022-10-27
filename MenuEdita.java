@@ -54,47 +54,49 @@ public class MenuEdita{
                 arrayContatos.remove(i);
       				}
       			}
-      			
+
+
       			contato.setAll(valores);
-      			
-            deletarArquivo.deletarArquivo(nomeDesejado+".vcf");
-            deletarArquivo.deletarArquivo("Contatos.txt");
-      			
-            arrayContatos.add(contato);
-            
-      			try {
-      				FileWriter fw = new FileWriter("Contatos.txt", true);
-      				BufferedWriter bw = new BufferedWriter(fw);
-      	
-      	      bw.write("Inicio");
-      				bw.newLine();
-      	      for (int i = 0; i < arrayContatos.size(); i++) {
-      	  			for (int j = 0; j < arrayContatos.get(0).getAll().length; j++) {
-      	  				if (arrayContatos.get(i).getAll()[j].equals("")) {
-      	  					bw.write("-");	
-      	  				} else {
-      	  					bw.write(arrayContatos.get(i).getAll()[j]);
-      	  				}
-      	  				bw.newLine();
-      	  			}
-      	  			bw.write("Inicio");
-                if(i != arrayContatos.size() - 1){
-                  bw.newLine();
-                }
-      	      }
-      				bw.close();
-      				fw.close();
-      			} catch (IOException e) {
-      				e.printStackTrace();
-      			}
-      
-      
-      			
-      		leituraTXTs.ler();
-      			
-      		} else {
-      			colorir.imprimirVermelho("Nenhum usuario encontrado!");
-      		}
+						String nomeAtualEditado = contato.getNome();
+      			if(menuBusca.buscaNomeCompleto(nomeAtualEditado, arrayContatos, colorir) != null) {
+							colorir.imprimirVermelho("Ja existe um contato com esse nome!");
+							colorir.imprimirVermelho("Contato nao adicionado no sistema!");
+						} else {
+							deletarArquivo.deletarArquivo(nomeDesejado+".vcf");
+   	        	deletarArquivo.deletarArquivo("Contatos.txt");
+	      			
+	            arrayContatos.add(contato);
+	            
+	      			try {
+	      				FileWriter fw = new FileWriter("Contatos.txt", true);
+	      				BufferedWriter bw = new BufferedWriter(fw);
+	      	
+	      	      bw.write("Inicio");
+	      				bw.newLine();
+	      	      for (int i = 0; i < arrayContatos.size(); i++) {
+	      	  			for (int j = 0; j < arrayContatos.get(0).getAll().length; j++) {
+	      	  				if (arrayContatos.get(i).getAll()[j].equals("")) {
+	      	  					bw.write("-");	
+	      	  				} else {
+	      	  					bw.write(arrayContatos.get(i).getAll()[j]);
+	      	  				}
+	      	  				bw.newLine();
+	      	  			}
+	      	  			bw.write("Inicio");
+	                if(i != arrayContatos.size() - 1){
+	                  bw.newLine();
+	                }
+	      	      }
+	      				bw.close();
+	      				fw.close();
+	      			} catch (IOException e) {
+	      				e.printStackTrace();
+	      			}
+	      			leituraTXTs.ler();
+						}
+					} else {
+						colorir.imprimirVermelho("Nenhum usuario encontrado!");
+					}
 					break;
 				case 2:
 					continuar = false;

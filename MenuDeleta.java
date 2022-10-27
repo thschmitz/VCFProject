@@ -7,9 +7,8 @@ public class MenuDeleta{
 	public void apaga(Cores colorir, String nomeDesejado, ArrayList<Contato>arrayContatos){
 		DeletarArquivo deletarArquivo = new DeletarArquivo();
 
-		//todo
+
 		//1- apagar de dentro do arrayContatos
-		// AQUI DA PARA REFATORAR!!!!
 		
 		for(int i = 0; i < arrayContatos.size(); i++) {
 			if(arrayContatos.get(i).getNome().equals(nomeDesejado)){
@@ -18,13 +17,10 @@ public class MenuDeleta{
 		}
 		
 		//2- apagar o vcf e o txt
-		//não ta funcionando FERNANDO ME AJUDA
-		//funcionou kkkkk
 
 		deletarArquivo.deletarArquivo(nomeDesejado+".vcf");
 		deletarArquivo.deletarArquivo("Contatos.txt");
 
-		
 		//3- reescrever txt com base no arrayContatos e ser feliz
 
 		try {
@@ -83,7 +79,7 @@ public class MenuDeleta{
 			
 			
 		} else {
-			colorir.imprimirVermelho("Não há contatos com esse nome."); // FAZER UMA CLASSE PARA ERROS
+			colorir.imprimirVermelho("Não há contatos com esse nome."); 
 		}
 	}
 	

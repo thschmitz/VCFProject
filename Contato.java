@@ -204,9 +204,6 @@ public class Contato {
 	}
 
 	public void setTipoResidencia(String tipoResidencia) {
-		if (tipoResidencia.equals("iglu")) {
-			System.out.println("Pqp kkkkkkkkkkk");
-		}
 		this.tipoResidencia = tipoResidencia;
 	}
 

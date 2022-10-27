@@ -32,12 +32,9 @@ public class MenuImporta {
 		System.out.print("-> ");
 		usuarioDigitado = entrada.nextLine();
 
-		// FAZER VERIFICAÇÃO SE ESSE VCF JÁ EXISTE
-
 		if(busca.buscaNomeCompleto(usuarioDigitado, arrayContatos, colorir)!=null){
 			colorir.imprimirVermelho("Usuario ja esta cadastrado no sistema!");
 		} else {
-			// 1 - ler o amigo
 
 			try {
 				linhas = Files.readAllLines(new File(usuarioDigitado + ".vcf").toPath());
@@ -51,9 +48,6 @@ public class MenuImporta {
 					
 					if(currentLinha.contains("X-SOCIALPROFILE;TYPE=")){
 						String[] separacaoLinhaValores = {currentLinha.substring(0, currentLinha.indexOf(":")), currentLinha.substring(currentLinha.indexOf(":") + 1) };
-						/*for(int k = 0; k < separacaoLinhaValores.length; k++) {
-							System.out.println(separacaoLinhaValores[k]);
-						}*/
 						String[] separacaoLinhaType = separacaoLinhaValores[0].split("=");
 						
 						if(!separacaoLinhaType[1].equals("twitter") && !separacaoLinhaType[1].equals("linkedin") && !separacaoLinhaType[1].equals("instagram") && !separacaoLinhaType[1].equals("youtube")){
@@ -86,10 +80,7 @@ public class MenuImporta {
 		
 				String[] novaListaPrefixosVazios = {"FN;CHARSET=UTF-8:", "N;CHARSET=UTF-8:;;;;", "GENDER:", "BDAY:", "EMAIL;CHARSET=UTF-8;type=HOME,INTERNET:", "TEL;TYPE=CELL:", "TEL;TYPE=HOME,VOICE:", "LABEL;CHARSET=UTF-8;TYPE=HOME:", "ADR;CHARSET=UTF-8;TYPE=WORK:;;", "ADR;CHARSET=UTF-8;TYPE=HOME:;;;;;;", "ORG;CHARSET=UTF-8:", "ROLE;CHARSET=UTF-8:", "URL;type=WORK;CHARSET=UTF-8:", "X-SOCIALPROFILE;TYPE=twitter:", "X-SOCIALPROFILE;TYPE=linkedin:", "X-SOCIALPROFILE;TYPE=instagram:", "X-SOCIALPROFILE;TYPE=youtube:", "X-SOCIALPROFILE;TYPE="+":" };
 		
-				
-				// PROBLEMA
-				for(int i = 0; i < novaListaPrefixosVazios.length; i ++) {
-					int TemIndice=0;
+				for(int i = 0; i < novaListaPrefixosVazios.length; i ++) {					int TemIndice=0;
 					
 					for(int l = 0; l < listaPrefixosUsados.size(); l++) {
 						String currentPrefixo = novaListaPrefixosVazios[i].replace(";", "");
@@ -101,7 +92,6 @@ public class MenuImporta {
 						}
 		
 						if(currentPrefixoUsado.equals(currentPrefixo)) {
-							// System.out.println("teste: " + currentPrefixoUsado);
 							TemIndice = i;
 						}
 					}
@@ -135,16 +125,10 @@ public class MenuImporta {
 				} else {
 					valoresAFormatar.add("-");
 				}
-		    
-				/*for(int j = 0; j < valoresAFormatar.size(); j ++) {
-					System.out.println("ValoresFinais: " + valoresAFormatar.get(j));
-				}*/
 				
 		    Formatacoes formatacoes = new Formatacoes(valoresAFormatar);
 		    formatacoes.setLista();
 		    String[] dadosFormatados = formatacoes.getLista();
-		
-				// formatacoes.imprimirListaValores();
 			
 		    for(int i = 0; i < dadosFormatados.length; i ++) {
 					if(dadosFormatados[i].equals("-")) {
@@ -152,11 +136,8 @@ public class MenuImporta {
 					}
 				}
 		
-		
 				contato.setAll(dadosFormatados);
-	
 	      deletarArquivo.deletarArquivo("Contatos.txt");
-	      			
 				arrayContatos.add(contato);
 				
 				try {

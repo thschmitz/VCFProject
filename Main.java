@@ -1,6 +1,5 @@
 import java.util.*;
 
-// ADICIONAR TODOS OS ARQUIVO DE PESSOAS DENTRO DE UMA POSSIVEL PASTA CHAMADA USUARIOS GERADOS
 
 class Main {
 	public static void main(String[] args) throws Exception {
@@ -28,22 +27,18 @@ class Main {
 
 			switch (opcaoUsuario) {
 				case 1:
-					// todo
-					menuCriacao.menu(leituraTXTs);
+					menuCriacao.menu(arrayContatos, leituraTXTs);
 					break;
 				case 2:
-					// todo
 					menuBusca.menu(arrayContatos, leituraTXTs);
 					break;
 				case 3:
 					menuDeleta.menu(arrayContatos);
 					break;
 				case 4:
-					// todo
 					menuEdita.menu(arrayContatos, leituraTXTs);
 					break;
 				case 5:
-					// todo
 					menuImporta.menu(arrayContatos, leituraTXTs);
 					break;
         case 6:

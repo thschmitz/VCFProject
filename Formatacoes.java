@@ -27,7 +27,6 @@ public class Formatacoes{
 
   public void formatarNomeMeio(){
 		
-		System.out.println("Algo: " + listaValores.get(1).split(";", -1)[2]);
 	  String[] partes = listaValores.get(1).split(";", -1);	
 		
     listaFormatados.add(partes[2]);
