@@ -13,17 +13,20 @@ public class MenuCriacao{
 		String [] campos = menu.getCampos();
 		String[] valores = new String[campos.length];
 		Scanner entrada = new Scanner(System.in);
-		String valorDigitado;
+		String valorDigitado = "";
 		
 		titulo.tituloPrincipal("Cria Usuario");
 
 		for (int i = 0; i < campos.length; i++) {
 			if (i == 0 || i == 1 || i == 2 || i == 3) {
-				System.out.println("\n" + (i + 1) + ") *Adicionar " + campos[i] + ": ");
+        while(valorDigitado.equals("")){
+				  System.out.println("\n" + (i + 1) + ") *Adicionar " + campos[i] + ": ");
+          valorDigitado = entrada.nextLine();
+        }
 			} else {
 				System.out.println("\n" + (i + 1) + ") Adicionar " + campos[i] + ": ");
+        valorDigitado = entrada.nextLine();
 			}
-			valorDigitado = entrada.nextLine();
 			valores[i] = valorDigitado;
 		}
 

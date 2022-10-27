@@ -26,8 +26,12 @@ public class Formatacoes{
   }
 
   public void formatarNomeMeio(){
-    String[] partes = listaValores.get(1).split(";");
+		
+		System.out.println("Algo: " + listaValores.get(1).split(";", -1)[2]);
+	  String[] partes = listaValores.get(1).split(";", -1);	
+		
     listaFormatados.add(partes[2]);
+		
     
   }
 
@@ -89,60 +93,60 @@ public class Formatacoes{
   }
 
   public void formatarEndereco(){
-    if (listaValores.get(8).equals("-")){
+    if (listaValores.get(9).equals("-")){
       listaFormatados.add("-");
     }else{
-      String[] partes = listaValores.get(8).split(";");
+      String[] partes = listaValores.get(9).split(";", -1);
       listaFormatados.add(partes[2]) ;  
     }
   }
 
   public void formatarCidade(){
-    if (listaValores.get(8).equals("-")){
+    if (listaValores.get(9).equals("-")){
       listaFormatados.add("-");
     }else{
-      String[] partes = listaValores.get(8).split(";");
+      String[] partes = listaValores.get(9).split(";", -1);
       listaFormatados.add(partes[3]);
     }
   }
 
   public void formatarEstado(){
-    if (listaValores.get(8).equals("-")){
+    if (listaValores.get(9).equals("-")){
       listaFormatados.add("-");
     }else{
-      String[] partes = listaValores.get(8).split(";");
+      String[] partes = listaValores.get(9).split(";", -1);
       listaFormatados.add(partes[4]);
     }
   }
 
   public void formatarPais(){
-    if (listaValores.get(8).equals("-")){
+    if (listaValores.get(9).equals("-")){
       listaFormatados.add("-");
     }else{
-      String[] partes = listaValores.get(8).split(";");
+      String[] partes = listaValores.get(9).split(";", -1);
       listaFormatados.add(partes[6]);
     }
   }
 
   public void formatarCEP(){
-    if (listaValores.get(8).equals("-")){
+    if (listaValores.get(9).equals("-")){
       listaFormatados.add("-");
     }else{
-      String[] partes = listaValores.get(8).split(";");
+      String[] partes = listaValores.get(9).split(";", -1);
       listaFormatados.add(partes[5]);
     }
   }
 
   public void formatarEtiquetaComercial(){
-    listaFormatados.add(listaValores.get(9)) ;    
+    listaFormatados.add(listaValores.get(10)) ;    
     
   }
 
   public void formatarEnderecoComercial(){
-    if(listaValores.get(10).equals("-")){
-      listaFormatados.add(listaValores.get(10));
+    if(listaValores.get(8).equals("-")){
+      listaFormatados.add(listaValores.get(8));
     } else {
-    	String[] partes = listaValores.get(10).split(";");
+    	String[] partes = listaValores.get(8).split(";", -1);
     	listaFormatados.add(partes[2]);  
 		}
   }

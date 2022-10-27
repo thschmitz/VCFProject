@@ -1,8 +1,13 @@
 import java.io.*;
 import java.util.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 
 public class BackupTXTs {
 	ArrayList<Contato> arrayContatos = new ArrayList<Contato>();
+  Cores colorir = new Cores();
 	
 	public void ler() throws Exception {
 		CamposMenu campos = new CamposMenu();
@@ -17,40 +22,35 @@ public class BackupTXTs {
 			Scanner entradaArquivo = new Scanner(arquivo);
 			String listaValores[];
 			int qtdCampos = campos.getCampos().length;
+			BufferedReader reader;
+			reader = new BufferedReader(new FileReader("Contatos.txt"));
 
-			// DINAMIZAR ISSO AQUI
 			listaValores = new String[qtdCampos];
 			entradaArquivo.nextLine();
-			
-			while (entradaArquivo.hasNextLine()) {
-				String valorLido = entradaArquivo.next();
-				if (valorLido.equals("Inicio")) {
+	
+			String line = reader.readLine();			
+			line = reader.readLine();
+			while (entradaArquivo.hasNextLine() && line != null) {
+				if (line.equals("Inicio")) {
 					Contato contato = new Contato();
 					contato.setAll(listaValores);
 					this.arrayContatos.add(contato);
-					// DINAMIZAR ISSO AQUI
 					listaValores = new String[qtdCampos];
 					contador = 0;
-					if (entradaArquivo.hasNextLine()) {
-						entradaArquivo.nextLine();
-						valorLido = entradaArquivo.next();
-					} else {
-						break;
+				} else {
+					if(line.equals("-")) {
+						line = "";
 					}
+					listaValores[contador] = line;
+					entradaArquivo.nextLine();
+					contador++;
 				}
-
-				if(valorLido.equals("-")) {
-					valorLido = "";
-				}
-				
-				listaValores[contador] = valorLido;
-				entradaArquivo.nextLine();
-				contador++;
+				line = reader.readLine();
 			}
+			reader.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			colorir.imprimirVermelho("Erro na leitura do arquivo!");
 		}
-
 	}
 
 	public ArrayList<Contato> getArrayContatos() {

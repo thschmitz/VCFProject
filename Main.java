@@ -19,6 +19,7 @@ class Main {
 		
 		ArrayList<Contato> arrayContatos = leituraTXTs.getArrayContatos();
 
+
 		while (menuPrincipalContador) {
 			titulo.tituloPrincipal("Opcoes");
 			System.out.println("O que voce deseja fazer?: " + "\n1) Cadastrar Usuario \n2) Visualizar Usuario \n3) Deletar Usuario \n4) Editar Usuario \n5) Importar Usuario \n6) Exportar Usuario \n7) Desconectar");

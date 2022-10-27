@@ -13,7 +13,7 @@ public class MenuExporta{
   		MenuBusca menuBusca = new MenuBusca();
       
       String usuarioDigitado = "";    
-      Boolean continuar = true;
+      Boolean continuar = true, temArquivo=false;
 		  int opcaoUsuario;
 		
 		while(continuar){
@@ -29,26 +29,42 @@ public class MenuExporta{
   		  colorir.imprimirCiano("Digite o nome completo do usuario a ser exportado: ");
     		System.out.print("-> ");
     		usuarioDigitado = entrada.nextLine();
-    
-        for(int i = 0; i < arrayContatos.size(); i++) {
-    			if(arrayContatos.get(i).getNome().equals(usuarioDigitado)){            
-            this.contato = menuBusca.buscaNomeCompleto(usuarioDigitado, arrayContatos, colorir);
-            try {
-              ArquivoCriacao arquivoCriacao = new ArquivoCriacao(contato);
-        			File file = new File(usuarioDigitado + ".vcf");
-        			file.createNewFile();
-        			FileWriter fileWriter = new FileWriter(usuarioDigitado + ".vcf");
-        			prefixos = new Prefixos(contato);
+				try{
+					InputStream arquivo = new FileInputStream(usuarioDigitado + ".vcf");	
+					Scanner entradaArquivo = new Scanner(arquivo);
+
+					if(entradaArquivo.hasNextLine()) {
+						temArquivo = true;
+					}
+				} catch (IOException e) {
+					colorir.imprimirVermelho("Arquivo nao existe!");
+				}
+				
+
+          for(int i = 0; i < arrayContatos.size(); i++) {
+      			if(arrayContatos.get(i).getNome().equals(usuarioDigitado)){            
+              this.contato = menuBusca.buscaNomeCompleto(usuarioDigitado, arrayContatos, colorir);
+              try {
+                ArquivoCriacao arquivoCriacao = new ArquivoCriacao(contato);
+          			File file = new File(usuarioDigitado + ".vcf");
+          			file.createNewFile();
+          			FileWriter fileWriter = new FileWriter(usuarioDigitado + ".vcf");
+          			prefixos = new Prefixos(contato);
+          
+          			arquivoCriacao.valoresVcf(fileWriter, prefixos);
+          
+          			fileWriter.close();
+          		} catch (IOException e) {
+          			e.printStackTrace();
+          		}
+							if(temArquivo) {
+								colorir.imprimirVerde("VCF recriado com sucesso!");	
+							}else{
+                colorir.imprimirVerde("VCF criado com sucesso!");	
+              }             
+            }          
+          }     
         
-        			arquivoCriacao.valoresVcf(fileWriter, prefixos);
-        
-        			fileWriter.close();
-        		} catch (IOException e) {
-        			e.printStackTrace();
-        		}
-            colorir.imprimirVerde("VCF criado com sucesso!");
-          }          
-        }         
         
         break;
         case 2:
