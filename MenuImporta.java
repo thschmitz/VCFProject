@@ -18,6 +18,7 @@ public class MenuImporta {
 		String[] listaPrefixos = prefixos.getListaVazios();
 		ArrayList<String> listaPrefixosUsados = new ArrayList<String>();
 		ArrayList<String> valoresAFormatar = new ArrayList<String>();
+		MenuBusca busca = new MenuBusca();
 		
 		String valorSite = "";
 		Boolean casoEspecial = false;
@@ -32,189 +33,149 @@ public class MenuImporta {
 
 		// FAZER VERIFICAÇÃO SE ESSE VCF JÁ EXISTE
 
-		// 1 - ler o amigo
+		if(busca.buscaNomeCompleto(usuarioDigitado, arrayContatos, colorir)!=null){
+			colorir.imprimirVermelho("Usuario ja esta cadastrado no sistema!");
+		} else {
+			// 1 - ler o amigo
 
-		try {
-			linhas = Files.readAllLines(new File(usuarioDigitado + ".vcf").toPath());
-			linhas.remove(0);
-			linhas.remove(0);
-			linhas.remove(linhas.size() - 1);
-		} catch (Exception e) {
-      colorir.imprimirVermelho("Arquivo não encontrado!");
-		}
-
-		// 2 - verificar se contem o prefixo dentro da array, se sim adiciona em lista,
-		// se não adiciona risco (-)
-
-
-		for (int i = 0; i < linhas.size(); i++) {
-			String currentLinha = linhas.get(i);
-			
-			if(currentLinha.contains("X-SOCIALPROFILE;TYPE=")){
-				String[] separacaoLinhaValores = currentLinha.split(":");
-				String[] separacaoLinhaType = separacaoLinhaValores[0].split("=");
-				
-				if(!separacaoLinhaType[1].equals("twitter") && !separacaoLinhaType[1].equals("linkedin") && !separacaoLinhaType[1].equals("instagram") && !separacaoLinhaType[1].equals("youtube")){
-					valorSite = separacaoLinhaValores[1];
-					prefixoSite = separacaoLinhaType[1];
-					casoEspecial = true;
-					// linhas.add(prefixoSite);
-				}
+			try {
+				linhas = Files.readAllLines(new File(usuarioDigitado + ".vcf").toPath());
+				linhas.remove(0);
+				linhas.remove(0);
+				linhas.remove(linhas.size() - 1);
+			} catch (Exception e) {
+	      colorir.imprimirVermelho("Arquivo não encontrado!");
 			}
-			
-			String prefixoNovo = "X-SOCIALPROFILE;TYPE=" + prefixoSite + ":";
-			
-			for (int p = 0; p < listaPrefixos.length; p++) {
-				String currentPrefixo = listaPrefixos[p];
+	
+			// 2 - verificar se contem o prefixo dentro da array, se sim adiciona em lista,
+			// se não adiciona risco (-)
+	
+	
+			for (int i = 0; i < linhas.size(); i++) {
+				String currentLinha = linhas.get(i);
 				
-				if(casoEspecial) {
-					if(currentLinha.replace(";", "").contains(prefixoNovo.replace(";", ""))){
-						listaPrefixosUsados.add(prefixoNovo);
-						prefixoNovo = "uindsfuhjishnfujidsnfuidsnij";
-						System.out.println("Colocou palavra");
+				if(currentLinha.contains("X-SOCIALPROFILE;TYPE=")){
+					String[] separacaoLinhaValores = {currentLinha.substring(0, currentLinha.indexOf(":")), currentLinha.substring(currentLinha.indexOf(":") + 1) };
+					for(int k = 0; k < separacaoLinhaValores.length; k++) {
+						System.out.println(separacaoLinhaValores[k]);
 					}
-				} else {
-					if (currentLinha.replace(";", "").contains(currentPrefixo.replace(";", ""))) {
-						listaPrefixosUsados.add(listaPrefixos[p]);
-						listaPrefixos[p] = "uindsfuhjishnfujidsnfuidsnii";
-						System.out.println("Colocou palavra");
-          }
-				} 
-      }
-		}
-		
-		// PROBLEMA
-		for(int i = 0; i < listaPrefixos.length; i ++) {
-			int naoTemIndice=0;
-			String naoTem2 = "";
-			
-			for(int l = 0; l < listaPrefixosUsados.size(); l++) {
-				String currentPrefixo = listaPrefixos[i].replace(";", "");
-				String currentPrefixoUsado = listaPrefixosUsados.get(l).replace(";", "");
-				String prefixoSiteNovo = listaPrefixos[i].split(":")[0] + prefixoSite + ":";
-
-				String prefixoCurrentSiteNovo = listaPrefixos[i].split(":")[0] + prefixoSite + ":";
+					String[] separacaoLinhaType = separacaoLinhaValores[0].split("=");
+					
+					if(!separacaoLinhaType[1].equals("twitter") && !separacaoLinhaType[1].equals("linkedin") && !separacaoLinhaType[1].equals("instagram") && !separacaoLinhaType[1].equals("youtube")){
+						valorSite = separacaoLinhaValores[1];
+						prefixoSite = separacaoLinhaType[1];
+						casoEspecial = true;
+						// linhas.add(prefixoSite);
+					}
+				}
 				
-				if(!currentPrefixo.contains(currentPrefixoUsado)){
-					if(casoEspecial){
-						if(!prefixoCurrentSiteNovo.replace(";", "").contains(prefixoSiteNovo.replace(";", ""))){
-							naoTemIndice = i;	
-							naoTem2 = listaPrefixos[i];	
+				String prefixoNovo = "X-SOCIALPROFILE;TYPE=" + prefixoSite + ":";
+				
+				for (int p = 0; p < listaPrefixos.length; p++) {
+					String currentPrefixo = listaPrefixos[p];
+					
+					if(casoEspecial) {
+						if(currentLinha.replace(";", "").contains(prefixoNovo.replace(";", ""))){
+							listaPrefixosUsados.add(prefixoNovo);
+							prefixoNovo = "uindsfuhjishnfujidsnfuidsnij";
+							System.out.println("Colocou palavra");
 						}
 					} else {
-						if(!listaPrefixos[i].equals("uindsfuhjishnfujidsnfuidsnii")) {
-							naoTemIndice = i;
-							naoTem2 = listaPrefixos[i];
+						if (currentLinha.replace(";", "").contains(currentPrefixo.replace(";", ""))) {
+							listaPrefixosUsados.add(listaPrefixos[p]);
+							listaPrefixos[p] = "uindsfuhjishnfujidsnfuidsnii";
+							System.out.println("Colocou palavra");
+	          }
+					} 
+	      }
+			}
+	
+			String[] novaListaPrefixosVazios = {"FN;CHARSET=UTF-8:", "N;CHARSET=UTF-8:;;;;", "GENDER:", "BDAY:", "EMAIL;CHARSET=UTF-8;type=HOME,INTERNET:", "TEL;TYPE=CELL:", "TEL;TYPE=HOME,VOICE:", "LABEL;CHARSET=UTF-8;TYPE=HOME:", "ADR;CHARSET=UTF-8;TYPE=WORK:;;", "ADR;CHARSET=UTF-8;TYPE=HOME:;;;;;;", "ORG;CHARSET=UTF-8:", "ROLE;CHARSET=UTF-8:", "URL;type=WORK;CHARSET=UTF-8:", "X-SOCIALPROFILE;TYPE=twitter:", "X-SOCIALPROFILE;TYPE=linkedin:", "X-SOCIALPROFILE;TYPE=instagram:", "X-SOCIALPROFILE;TYPE=youtube:", "X-SOCIALPROFILE;TYPE="+":" };
+	
+			
+			// PROBLEMA
+			for(int i = 0; i < novaListaPrefixosVazios.length; i ++) {
+				int TemIndice=0;
+				String naoTem2 = "";
+				
+				
+				for(int l = 0; l < listaPrefixosUsados.size(); l++) {
+					String currentPrefixo = novaListaPrefixosVazios[i].replace(";", "");
+					String currentPrefixoUsado = listaPrefixosUsados.get(l).replace(";", "");
+					String prefixoSiteNovo = novaListaPrefixosVazios[i].split(":")[0] + prefixoSite + ":";
+					
+					if(casoEspecial && prefixoSiteNovo.equals("X-SOCIALPROFILE;TYPE="+prefixoSite+":")){
+						currentPrefixo = currentPrefixo.replace(":", prefixoSite) + ":";
+					}
+	
+					if(currentPrefixoUsado.equals(currentPrefixo)) {
+						System.out.println("teste: " + currentPrefixoUsado);
+						TemIndice = i;
+					}
+					
+				}
+	
+				if(TemIndice==i) {
+					System.out.println(TemIndice);	
+					
+				} else {
+					System.out.println("Nao tem: " + i);	
+					listaPrefixosUsados.add(i, "-");
+				}
+			}
+	
+			System.out.println("------------------------");
+			
+			for (int i = 0; i < listaPrefixos.length; i++) {
+	
+				String currentPrefixo = listaPrefixosUsados.get(i).split(":")[0].replace(";", "");
+				String currentLinha="";
+				String currentValor="";
+	
+				if(currentPrefixo.equals("-")) {
+					valoresAFormatar.add("-");
+				} else {
+					for(int j = 0; j < linhas.size(); j++){	
+						currentLinha = linhas.get(j).split(":")[0].replace(";", "");
+						currentValor = linhas.get(j).split(":")[1];
+	
+						
+	
+						if(currentLinha.equals(currentPrefixo)) {
+		
+							valoresAFormatar.add(currentValor);
+							
 						}
 					}
 				}
 			}
-
-			if(naoTemIndice!=0) {
-				System.out.println(naoTemIndice);	
-				listaPrefixosUsados.add(naoTemIndice, "-");
-			}
-		}
-
-		System.out.println("------------------------");
-/*		System.out.println(listaPrefixos.length);
-
-		for(int i = 0; i < listaPrefixosUsados.size(); i++) {
-			System.out.println(listaPrefixosUsados.get(i).split(":")[0].replace(";", ""));
-		}
-		
-		System.out.println("------------------------");
-		
-		for(int i = 0; i < linhas.size(); i++) {
-			System.out.println(linhas.get(i).split(":")[0].replace(";", ""));
-		}
-		System.out.println("------------------------");*/
-		
-		for (int i = 0; i < listaPrefixos.length; i++) {
-
-			String currentPrefixo = listaPrefixosUsados.get(i).split(":")[0].replace(";", "");
-			String currentLinha="";
-			String currentValor="";
-
-			if(currentPrefixo.equals("-")) {
-				valoresAFormatar.add("-");
-			} else {
-				for(int j = 0; j < linhas.size(); j++){	
-					currentLinha = linhas.get(j).split(":")[0].replace(";", "");
-					currentValor = linhas.get(j).split(":")[1];
-
-					
-
-					if(currentLinha.equals(currentPrefixo)) {
 	
-						valoresAFormatar.add(currentValor);
-						
-					}
+			if(casoEspecial){
+				valoresAFormatar.add(prefixoSite);
+			} else {
+				valoresAFormatar.add("-");
+			}
+	    
+			for(int j = 0; j < valoresAFormatar.size(); j ++) {
+				System.out.println("ValoresFinais: " + valoresAFormatar.get(j));
+			}
+			
+	    Formatacoes formatacoes = new Formatacoes(valoresAFormatar);
+	    formatacoes.setLista();
+	    String[] dadosFormatados = formatacoes.getLista();
+	
+			formatacoes.imprimirListaValores();
+		
+	    for(int i = 0; i < dadosFormatados.length; i ++) {
+				if(dadosFormatados[i].equals("-")) {
+					dadosFormatados[i] = "";
 				}
 			}
+	
+	
+			contato.setAll(dadosFormatados);
 		}
-
-		if(casoEspecial){
-			valoresAFormatar.add(prefixoSite);
-		} else {
-			valoresAFormatar.add("-");
-		}
-
-    
-		for(int j = 0; j < valoresAFormatar.size(); j ++) {
-			System.out.println("ValoresFinais: " + valoresAFormatar.get(j));
-		}
-    
-    /*
 		
-    Formatacoes formatacoes = new Formatacoes(valoresAFormatar);
-    formatacoes.setLista();
-    String[] dadosFormatados = formatacoes.getLista();
-
-    for(int k = 0; k < dadosFormatados.lenght; k++) {
-      System.out.println(dadosFormatados[k]);
-    }
-    
-
-    contato.setAll(dadosFormatados);
-      			
-
-            deletarArquivo.deletarArquivo("Contatos.txt");
-      			
-            arrayContatos.add(contato);
-            
-      			try {
-      				FileWriter fw = new FileWriter("Contatos.txt", true);
-      				BufferedWriter bw = new BufferedWriter(fw);
-      	
-      	      bw.write("Inicio");
-      				bw.newLine();
-      	      for (int i = 0; i < arrayContatos.size(); i++) {
-      	  			for (int j = 0; j < arrayContatos.get(0).getAll().length; j++) {
-      	  				if (arrayContatos.get(i).getAll()[j].equals("")) {
-      	  					bw.write("-");	
-      	  				} else {
-      	  					bw.write(arrayContatos.get(i).getAll()[j]);
-      	  				}
-      	  				bw.newLine();
-      	  			}
-      	  			bw.write("Inicio");
-                if(i != arrayContatos.size() - 1){
-                  bw.newLine();
-                }
-      	      }
-      				bw.close();
-      				fw.close();
-      			} catch (IOException e) {
-      				e.printStackTrace();
-      			}
-      
-      
-      			
-      		leituraTXTs.ler();
-
-    */
-    
 	}
 
 	public void menu(ArrayList<Contato> arrayContatos, BackupTXTs leituraTXTs) {
