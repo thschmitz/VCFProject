@@ -79,10 +79,29 @@ public class MenuImporta {
 				}
 		
 				String[] novaListaPrefixosVazios = {"FN;CHARSET=UTF-8:", "N;CHARSET=UTF-8:;;;;", "GENDER:", "BDAY:", "EMAIL;CHARSET=UTF-8;type=HOME,INTERNET:", "TEL;TYPE=CELL:", "TEL;TYPE=HOME,VOICE:", "LABEL;CHARSET=UTF-8;TYPE=HOME:", "ADR;CHARSET=UTF-8;TYPE=WORK:;;", "ADR;CHARSET=UTF-8;TYPE=HOME:;;;;;;", "ORG;CHARSET=UTF-8:", "ROLE;CHARSET=UTF-8:", "URL;type=WORK;CHARSET=UTF-8:", "X-SOCIALPROFILE;TYPE=twitter:", "X-SOCIALPROFILE;TYPE=linkedin:", "X-SOCIALPROFILE;TYPE=instagram:", "X-SOCIALPROFILE;TYPE=youtube:", "X-SOCIALPROFILE;TYPE="+":" };
-		
-				for(int i = 0; i < novaListaPrefixosVazios.length; i ++) {					int TemIndice=0;
+
+
+				ArrayList<String> arrayOrdenado = new ArrayList<String>();
+				
+				for(int i = 0; i < novaListaPrefixosVazios.length; i ++) {
+					int TemIndice=0;
+					String currentNovaListaPrefixosVazios=novaListaPrefixosVazios[i].replace(";", "");
+					
+					
+					if(casoEspecial) {
+						if(currentNovaListaPrefixosVazios.equals("X-SOCIALPROFILETYPE=:")) {
+							currentNovaListaPrefixosVazios = "X-SOCIALPROFILETYPE=" + prefixoSite + ":";
+						}
+					}
+
 					
 					for(int l = 0; l < listaPrefixosUsados.size(); l++) {
+						String currentListaPrefixosUsados=listaPrefixosUsados.get(l).replace(";", "");	
+						if(currentNovaListaPrefixosVazios.equals(currentListaPrefixosUsados)) {
+							arrayOrdenado.add(i, currentListaPrefixosUsados);
+						}
+						
+						
 						String currentPrefixo = novaListaPrefixosVazios[i].replace(";", "");
 						String currentPrefixoUsado = listaPrefixosUsados.get(l).replace(";", "");
 						String prefixoSiteNovo = novaListaPrefixosVazios[i].split(":")[0] + prefixoSite + ":";
@@ -95,14 +114,24 @@ public class MenuImporta {
 							TemIndice = i;
 						}
 					}
+
+					
 					if(TemIndice!=i) {
-						listaPrefixosUsados.add(i, "-");
+						arrayOrdenado.add(i, "-");
 					}
 				}
+
+				
+				for(int i =0; i < arrayOrdenado.size(); i++) {
+					if(arrayOrdenado.get(i).equals("")) {
+						arrayOrdenado.add(i, "-");
+					}
+				}
+
 				
 				for (int i = 0; i < listaPrefixos.length; i++) {
 		
-					String currentPrefixo = listaPrefixosUsados.get(i).split(":")[0].replace(";", "");
+					String currentPrefixo = arrayOrdenado.get(i).split(":")[0].replace(";", "");
 					String currentLinha="";
 					String currentValor="";
 		
@@ -125,6 +154,7 @@ public class MenuImporta {
 				} else {
 					valoresAFormatar.add("-");
 				}
+
 				
 		    Formatacoes formatacoes = new Formatacoes(valoresAFormatar);
 		    formatacoes.setLista();
@@ -170,6 +200,7 @@ public class MenuImporta {
 	
 				try{
 					leituraTXTs.ler();
+          colorir.imprimirVerde("Contato importado com sucesso!");
 				}catch (Exception e) {
 					colorir.imprimirVermelho("Erro na leitura do arquivo!");
 				}

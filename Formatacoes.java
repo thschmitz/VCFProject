@@ -19,7 +19,6 @@ public class Formatacoes{
   }
 
   public void formatarPrimeiroNome(){
-		System.out.println(listaValores.get(1));
     String[] partes = listaValores.get(1).split(";");
     listaFormatados.add(partes[1]);
     

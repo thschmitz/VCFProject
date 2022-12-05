@@ -37,7 +37,7 @@ public class MenuExporta{
 							temArquivo = true;
 						}
 					} catch (IOException e) {
-						colorir.imprimirVermelho("Arquivo nao existe!");
+						
 					}
 	
 					for(int i = 0; i < arrayContatos.size(); i++) {
